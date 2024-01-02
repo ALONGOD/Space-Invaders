@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="CSS/main.css" rel="stylesheet">
+    <title>space invaders</title>
+</head>
+
+<body onload="init()" onkeydown="keyPress(event)">
+    <h2></h2>
+    <div class="over hide"><span></span><br>
+        <button class="glow-on-hover" type="button" onclick="restart()">Restart Game</button>
+    </div>
+    <div class="game"></div>
+
+
+    <script src="JS/game.js"></script>
+    <script src="JS/util.js"></script>
+    <script src="JS/hero.js"></script>
+    <script src="JS/alien.js"></script>
+</body>
+
+</html>
