@@ -8,14 +8,19 @@
     <title>space invaders</title>
 </head>
 
-<body onload="init()" onkeydown="onkeydown(ev)">
+<body onload="init()" onkeydown="keyPress(event)">
+    <h2></h2>
+    <div class="lose hide">Sorry you lost...</div>
+    <div class="victory hide">You won man!!!<br>
+        <button class="glow-on-hover" type="button" onclick="restart()">Restart Game</button>
+    </div>
     <div class="game"></div>
 
 
-    <script src="JS/alien.js"></script>
-    <script src="JS/hero.js"></script>
-    <script src="JS/util.js"></script>
     <script src="JS/game.js"></script>
+    <script src="JS/util.js"></script>
+    <script src="JS/hero.js"></script>
+    <script src="JS/alien.js"></script>
 </body>
 
 </html>

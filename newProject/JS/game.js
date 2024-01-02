@@ -2,10 +2,13 @@
 const BOARD_SIZE = 14
 const ALIEN_ROW_LENGTH = 8
 const ALIEN_ROW_COUNT = 3
-const HERO = '♆'
-const ALIEN = '👽'
+const HERO = '&#8516;'
+const ALIEN = '&#x1F47D;'
 const LASER = '⤊'
 const SKY = ''
+var gScore = 0
+var elH2 = document.querySelector('h2')
+elH2.innerText = `score: ${gScore}`
 // Matrix of cell objects. e.g.: {type: SKY, gameObject: ALIEN}
 var gBoard
 var gGame = {
@@ -16,6 +19,9 @@ var gGame = {
 function init() {
     gBoard = createBoard()
     renderBoard(gBoard)
+    // shiftBoardLeft(gBoard, 1, 2)
+    // gIntervalAliens = setInterval(moveAliens(), ALIEN_SPEED)
+
 }
 
 // Create and returns the board with aliens on top, ground at bottom
@@ -55,8 +61,8 @@ function renderBoard(board) {
     elContainer.innerHTML = strHTML
 }
 // Returns a new cell object. e.g.: {type: SKY, gameObject: ALIEN}
-function createCell(gameObject = null) {
 
+function createCell(gameObject = null) {
     return {
         type: SKY,
         gameObject: gameObject
@@ -68,3 +74,32 @@ function updateCell(pos, gameObject = null) {
     var elCell = getElCell(pos)
     elCell.innerHTML = gameObject || ''
 }
+
+
+function updateScore(num) {
+    gScore += num
+    var elH2 = document.querySelector('h2')
+    elH2.innerText = `score: ${gScore}`
+}
+
+
+function Victory() {
+    var elVictory = document.querySelector('.victory')
+    elVictory.classList.remove('hide')
+}
+
+function lose() {
+    var elLose = document.querySelector('.lose')
+    elLose.classList.remove('hide')
+}
+
+function restart() {
+    var elVictory = document.querySelector('.victory')
+    elVictory.classList.add('hide')
+    gScore = 0
+    updateScore(0)
+    gGame.alienCount = 0
+    init()
+}
+
+
