@@ -10,9 +10,7 @@ var gIsAlienFreeze = false
 
 gAliensTopRowIdx = 1
 gAliensBottomRowIdx = 2
-// var gIntervalAliens = setInterval(moveAliens(), ALIEN_SPEED)
-// console.log(gBoard)
-// shiftBoardRight(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
+
 
 function createAliens(board) {
     for (var i = 0; i < board.length; i++) {
@@ -49,11 +47,10 @@ function shiftBoardLeft(board, fromI, toI) {
         updateCell({ i: i, j: board[i].length - 1 }, null);
     }
 }
-// setTimeout(() => shiftBoardLeft(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx), 1000)
-// shiftBoardLeft(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
-// setTimeout(() => shiftBoardRight(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx), 5000)
-// setTimeout(() => shiftBoardDown(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx), 5000)
 
+
+
+// לעשות פלוס אחדים ולשנות את אפדייט סל
 
 function shiftBoardDown(board, fromI, toI) {
     for (var i = toI; i > fromI; i--) {
@@ -66,8 +63,8 @@ function shiftBoardDown(board, fromI, toI) {
         updateCell({ i: fromI, j: j }, null);
     }
 
-    gAliensTopRowIdx += 1;
-    gAliensBottomRowIdx += 1;
+    gAliensTopRowIdx++;
+    gAliensBottomRowIdx++;
 }
 
 // runs the interval for moving aliens side to side and down
@@ -80,11 +77,37 @@ function shiftBoardDown(board, fromI, toI) {
 function moveAliens() {
     if (gIsAlienFreeze) return
 
+    if (Math.random() > 0.85) shiftBoardDown(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx + 1)
+
     if (gAliensBottomRowIdx === gHero.pos.i) {
         clearInterval(gIntervalAliens)
         lose()
         return
     }
+
+
+    if (gBoard[gAliensTopRowIdx][0].gameObject === null && gBoard[gAliensBottomRowIdx][0].gameObject === null && gBoard[gAliensTopRowIdx][BOARD_SIZE - 1].gameObject === null && gBoard[gAliensBottomRowIdx][BOARD_SIZE - 1].gameObject === null) {
+        if (Math.random() > 0.5) {
+            shiftBoardRight(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
+            console.log('hey1')
+            return
+        } else {
+            shiftBoardLeft(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
+            console.log('hey2')
+            return
+        }
+    } else if (gBoard[gAliensTopRowIdx][BOARD_SIZE - 1].gameObject === null && gBoard[gAliensBottomRowIdx][BOARD_SIZE - 1].gameObject === null) {
+        shiftBoardRight(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
+        console.log('hey3')
+        return
+    } else if (gBoard[gAliensTopRowIdx][0].gameObject === null && gBoard[gAliensTopRowIdx][0].gameObject === null) {
+        shiftBoardLeft(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
+        console.log('hey4')
+        return
+    }
+
+
+
 
 
 

@@ -20,10 +20,12 @@ var gGame = {
 // globalThis
 // Called when game loads
 function init() {
+    gAliensTopRowIdx = 1
+    gAliensBottomRowIdx = 2
     gBoard = createBoard()
     renderBoard(gBoard)
     // shiftBoardLeft(gBoard, 1, 2)
-    // gIntervalAliens = setInterval(moveAliens, 3000)
+    gIntervalAliens = setInterval(moveAliens, ALIEN_SPEED)
     // setTimeout(() => shiftBoardLeft(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx), 1000)
 
 }
