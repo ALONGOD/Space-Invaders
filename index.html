@@ -8,7 +8,8 @@
     <title>space invaders</title>
 </head>
 
-<body onload="init()" onkeydown="keyPress(event)">
+<body class="content" onkeydown="keyPress(event)">
+    <button class="glow-on-hover start" onclick="init()">start game</button>
     <h2></h2>
     <div class="over hide"><span></span><br>
         <button class="glow-on-hover" type="button" onclick="restart()">Restart Game</button>

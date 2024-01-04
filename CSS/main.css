@@ -1,3 +1,8 @@
+html {
+    color: #fff;
+    background-color: #000;
+}
+
 table,
 td {
     border: 1px black solid;
@@ -10,10 +15,13 @@ td {
     text-align: center;
 }
 
-table {
+/* table {
     table-layout: fixed;
-}
+} */
 
+.game {
+    margin-left: 300px;
+}
 
 .hide {
     display: none;

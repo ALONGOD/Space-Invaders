@@ -2,10 +2,11 @@
 const BOARD_SIZE = 14
 const ALIEN_ROW_LENGTH = 8
 const ALIEN_ROW_COUNT = 3
-const HERO = '&#8516;'
-const ALIEN = '&#x1F47D;'
-const LASER = '⤊'
+const HERO = '✡️'
+const ALIEN = '👳🏾'
+var LASER = '🕎'
 const SKY = ''
+const CANDY = '🍬'
 var gScore = 0
 var elH2 = document.querySelector('h2')
 elH2.innerText = `score: ${gScore}`
@@ -16,16 +17,22 @@ var gGame = {
     isOn: false,
     alienCount: 0
 }
-
+var gIntervalCandy
 // globalThis
 // Called when game loads
 function init() {
+    var elBtn = document.querySelector('.start')
+    elBtn.classList.add('hide')
     gAliensTopRowIdx = 1
     gAliensBottomRowIdx = 2
     gBoard = createBoard()
     renderBoard(gBoard)
     // shiftBoardLeft(gBoard, 1, 2)
+    // clearInterval(gIntervalAliens)
     gIntervalAliens = setInterval(moveAliens, ALIEN_SPEED)
+    gIntervalCandy = setInterval(spaceCandies, 10000)
+    // spaceCandies()
+
     // setTimeout(() => shiftBoardLeft(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx), 1000)
 
 }
@@ -95,6 +102,7 @@ function Victory() {
     var elGameOver = document.querySelector('.over')
     elGameOver.classList.remove('hide')
     clearInterval(gIntervalAliens)
+    clearInterval(gIntervalCandy)
 }
 
 function lose() {
@@ -103,6 +111,7 @@ function lose() {
     var elGameOver = document.querySelector('.over')
     elGameOver.classList.remove('hide')
     clearInterval(gIntervalAliens)
+    clearInterval(gIntervalCandy)
 }
 
 function restart() {
@@ -113,5 +122,18 @@ function restart() {
     gGame.alienCount = 0
     init()
 }
-
-
+function spaceCandies() {
+    var cells = []
+    for (var i = 11; i <= 11; i++) {
+        for (var j = 0; j < BOARD_SIZE; j++) {
+            // console.log(gBoard[i][j])
+            if (gBoard[i][j].gameObject !== ALIEN) cells.push({ i, j })
+        }
+    }
+    // console.log(cells)
+    // console.log(gBoard)
+    var myCell = cells[getRandomInt(0, cells.length)]
+    // console.log(myCell)
+    updateCell(myCell, CANDY)
+    setTimeout(() => updateCell(myCell), 5000)
+}

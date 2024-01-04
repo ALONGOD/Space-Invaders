@@ -89,20 +89,16 @@ function moveAliens() {
     if (gBoard[gAliensTopRowIdx][0].gameObject === null && gBoard[gAliensBottomRowIdx][0].gameObject === null && gBoard[gAliensTopRowIdx][BOARD_SIZE - 1].gameObject === null && gBoard[gAliensBottomRowIdx][BOARD_SIZE - 1].gameObject === null) {
         if (Math.random() > 0.5) {
             shiftBoardRight(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
-            console.log('hey1')
             return
         } else {
             shiftBoardLeft(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
-            console.log('hey2')
             return
         }
     } else if (gBoard[gAliensTopRowIdx][BOARD_SIZE - 1].gameObject === null && gBoard[gAliensBottomRowIdx][BOARD_SIZE - 1].gameObject === null) {
         shiftBoardRight(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
-        console.log('hey3')
         return
     } else if (gBoard[gAliensTopRowIdx][0].gameObject === null && gBoard[gAliensTopRowIdx][0].gameObject === null) {
         shiftBoardLeft(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
-        console.log('hey4')
         return
     }
 
