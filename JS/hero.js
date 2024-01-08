@@ -101,7 +101,7 @@ function superMode() {
     } else {
         gIsSuper = true
         LASER = '⚡'
-        LASER_SPEED = 30
+        LASER_SPEED = 32
 
     }
 
