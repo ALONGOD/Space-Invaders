@@ -91,7 +91,7 @@ function blowUp() {
 function superMode() {
     if (gSuperCounter > 3) {
         gSuperCounter = 0
-        LASER = '🕎'
+        LASER = '&#9757;'
         LASER_SPEED = 80
         gIsSuper = false
     } else {
@@ -110,7 +110,7 @@ function paintBoard() {
             if (i === j || i + j === BOARD_SIZE - 1) {
                 const elCell = getElCell({ i: i, j: j })
                 elCell.style.backgroundColor = "red"
-                setTimeout(() => elCell.style.backgroundColor = 'black', 3000)
+                setTimeout(() => elCell.style.backgroundColor = 'black', 2000)
                 if (gBoard[i][j].gameObject === ALIEN) handleAlienHit({ i: i, j: j })
             }
         }

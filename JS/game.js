@@ -1,5 +1,5 @@
 `use strict`
-const BOARD_SIZE = 14
+const BOARD_SIZE = 13
 const ALIEN_ROW_LENGTH = 8
 const ALIEN_ROW_COUNT = 3
 const HERO = '&#x1F680;'
