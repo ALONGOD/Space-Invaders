@@ -3,21 +3,12 @@ html {
     background-color: #000;
 }
 
-table,
 td {
-    border: 1px black solid;
-}
-
-td {
-    padding: 10px;
+    padding: 13px;
     width: 20px;
     height: 20px;
     text-align: center;
 }
-
-/* table {
-    table-layout: fixed;
-} */
 
 .game {
     margin-left: 300px;
@@ -36,19 +27,6 @@ td {
 .over button {
     margin: 20px;
 }
-
-/* html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background: #000;
-} */
 
 .glow-on-hover {
     width: 220px;

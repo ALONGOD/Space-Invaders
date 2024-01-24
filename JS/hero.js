@@ -4,34 +4,33 @@ gIsSuper = false
 var LASER_SPEED = 80
 var gLaserPos = 1
 var gHero = { pos: { i: 12, j: 5 }, isShoot: false }
-// creates the hero and place it on board
+
 function createHero(board) {
     board[gHero.pos.i][gHero.pos.j] = createCell(HERO)
 }
-// Handle game keys
+
 function keyPress(ev) {
     if (ev.key === 'ArrowRight') moveHero(1)
     if (ev.key === 'ArrowLeft') moveHero(-1)
     if (ev.key === ' ') shootHero()
     if (ev.key === 'n') blowUp()
     if (ev.key === 'x') superMode()
+    if (ev.key === 'a') paintBoard()
 }
-// Move the hero right (1) or left (-1)
+
+
 function moveHero(dir) {
     if (gHero.pos.j === BOARD_SIZE - 1 && dir === 1) return
     if (gHero.pos.j === 0 && dir === -1) return
-    // delete from DOM and Modal
+
     updateCell(gHero.pos, null)
 
-    //update in gHero
     gHero.pos.j += dir
 
-    // update new hero position in Dom and Modal
     updateCell(gHero.pos, HERO)
-
-
 }
-// Sets an interval for shutting (blinking) the laser up towards aliens
+
+
 function shootHero() {
     if (gHero.isShoot) return
     if (gIsSuper) {
@@ -52,8 +51,6 @@ function shootHero() {
                 handleAlienHit(gLaserPos)
                 return
             } else if (isCandyHit) {
-                // alert('hii')
-                // updateCell(gLaserPos)
                 updateScore(20)
                 gIsAlienFreeze = true
                 setTimeout(() => gIsAlienFreeze = false, 5000)
@@ -63,7 +60,7 @@ function shootHero() {
         blinkLaser(gLaserPos)
     }, LASER_SPEED)
 }
-// renders a LASER at specific cell for short time and removes it
+
 function blinkLaser(pos) {
     updateCell(pos, LASER)
     setTimeout(() => updateCell(pos), 25)
@@ -73,11 +70,11 @@ function blinkLaser(pos) {
 
 
 function blowUp() {
+
     if (!gHero.isShoot) return
-    // console.log(gLaserPos)
+
     for (var i = gLaserPos.i - 1; i <= gLaserPos.i + 1; i++) {
         for (var j = gLaserPos.j - 1; j <= gLaserPos.j + 1; j++) {
-            // if (i === gLaserPos.i && j === gLaserPos.j) continue
             if (j < 0 || j >= BOARD_SIZE - 1) continue
             if (i < 0 || i >= BOARD_SIZE - 1) continue
             if (gBoard[i][j].gameObject === ALIEN) {
@@ -88,7 +85,6 @@ function blowUp() {
     }
     clearInterval(gIntervalLaser)
     gHero.isShoot = false
-    // console.log('hi')
 }
 
 
@@ -105,4 +101,18 @@ function superMode() {
 
     }
 
+}
+
+
+function paintBoard() {
+    for (var i = 0; i < BOARD_SIZE; i++) {
+        for (var j = 0; j < BOARD_SIZE; j++) {
+            if (i === j || i + j === BOARD_SIZE - 1) {
+                const elCell = getElCell({ i: i, j: j })
+                elCell.style.backgroundColor = "red"
+                setTimeout(() => elCell.style.backgroundColor = 'black', 3000)
+                if (gBoard[i][j].gameObject === ALIEN) handleAlienHit({ i: i, j: j })
+            }
+        }
+    }
 }

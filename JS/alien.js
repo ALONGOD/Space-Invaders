@@ -1,13 +1,7 @@
 `use strict`
+
 const ALIEN_SPEED = 1000
-
-// The following two variables represent the part of the matrix (some rows)
-// that we should shift (left, right, and bottom)
-// We need to update those when:
-// (1) shifting down and (2) last alien was cleared from row
-
 var gIsAlienFreeze = false
-
 gAliensTopRowIdx = 1
 gAliensBottomRowIdx = 2
 
@@ -49,9 +43,6 @@ function shiftBoardLeft(board, fromI, toI) {
 }
 
 
-
-// לעשות פלוס אחדים ולשנות את אפדייט סל
-
 function shiftBoardDown(board, fromI, toI) {
     for (var i = toI; i > fromI; i--) {
         for (var j = 0; j < board[i].length; j++) {
@@ -66,13 +57,6 @@ function shiftBoardDown(board, fromI, toI) {
     gAliensTopRowIdx++;
     gAliensBottomRowIdx++;
 }
-
-// runs the interval for moving aliens side to side and down
-// it re-renders the board every time
-// when the aliens are reaching the hero row - interval stops
-// moveAliens()
-// setTimeout(() => moveAliens(), 5000)
-// setTimeout(moveAliens, 5000)
 
 function moveAliens() {
     if (gIsAlienFreeze) return
@@ -101,10 +85,4 @@ function moveAliens() {
         shiftBoardLeft(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
         return
     }
-
-
-
-
-
-
 }

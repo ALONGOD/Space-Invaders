@@ -2,24 +2,22 @@
 const BOARD_SIZE = 14
 const ALIEN_ROW_LENGTH = 8
 const ALIEN_ROW_COUNT = 3
-const HERO = '✡️'
-const ALIEN = '👳🏾'
-var LASER = '🕎'
+const HERO = '&#x1F680;'
+const ALIEN = '&#128125;'
+var LASER = '&#9757;'
 const SKY = ''
 const CANDY = '🍬'
 var gScore = 0
 var elH2 = document.querySelector('h2')
 elH2.innerText = `score: ${gScore}`
-// Matrix of cell objects. e.g.: {type: SKY, gameObject: ALIEN}
+
+var gIntervalCandy
 var gBoard
 var gGame = {
-    // gBoard:null,
     isOn: false,
     alienCount: 0
 }
-var gIntervalCandy
-// globalThis
-// Called when game loads
+
 function init() {
     var elBtn = document.querySelector('.start')
     elBtn.classList.add('hide')
@@ -27,18 +25,13 @@ function init() {
     gAliensBottomRowIdx = 2
     gBoard = createBoard()
     renderBoard(gBoard)
-    // shiftBoardLeft(gBoard, 1, 2)
-    // clearInterval(gIntervalAliens)
     gIntervalAliens = setInterval(moveAliens, ALIEN_SPEED)
     gIntervalCandy = setInterval(spaceCandies, 10000)
-    // spaceCandies()
 
-    // setTimeout(() => shiftBoardLeft(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx), 1000)
 
 }
 
-// Create and returns the board with aliens on top, ground at bottom
-// use the functions: createCell, createHero, createAliens
+
 function createBoard() {
     var board = []
     for (var i = 0; i < BOARD_SIZE; i++) {
@@ -53,7 +46,7 @@ function createBoard() {
     return board
 }
 
-// Render the board as a <table> to the page
+
 function renderBoard(board) {
     var strHTML = '<table><tbody>'
     for (var i = 0; i < board.length; i++) {
@@ -63,7 +56,7 @@ function renderBoard(board) {
             const cell = board[i][j]
             const className = `cell-${i}-${j}`
             //
-            strHTML += `<td class="${className}"
+            strHTML += `<td onclick="killAlien(this)" class="${className}"
             data-i='${i}' data-j='${j}'>${cell.gameObject || ''}</td>`
         }
         strHTML += '</tr>'
@@ -73,7 +66,7 @@ function renderBoard(board) {
     const elContainer = document.querySelector('.game')
     elContainer.innerHTML = strHTML
 }
-// Returns a new cell object. e.g.: {type: SKY, gameObject: ALIEN}
+
 
 function createCell(gameObject = null) {
     return {
@@ -81,7 +74,7 @@ function createCell(gameObject = null) {
         gameObject: gameObject
     }
 }
-// position such as: {i: 2, j: 7}
+
 function updateCell(pos, gameObject = null) {
     gBoard[pos.i][pos.j].gameObject = gameObject
     var elCell = getElCell(pos)
@@ -98,7 +91,7 @@ function updateScore(num) {
 
 function Victory() {
     var elSpan = document.querySelector('span')
-    elSpan.innerText = 'You won man! hell yeahhh'
+    elSpan.innerText = 'You won! hell yeahhh'
     var elGameOver = document.querySelector('.over')
     elGameOver.classList.remove('hide')
     clearInterval(gIntervalAliens)
@@ -126,14 +119,33 @@ function spaceCandies() {
     var cells = []
     for (var i = 11; i <= 11; i++) {
         for (var j = 0; j < BOARD_SIZE; j++) {
-            // console.log(gBoard[i][j])
             if (gBoard[i][j].gameObject !== ALIEN) cells.push({ i, j })
         }
     }
-    // console.log(cells)
-    // console.log(gBoard)
     var myCell = cells[getRandomInt(0, cells.length)]
-    // console.log(myCell)
     updateCell(myCell, CANDY)
     setTimeout(() => updateCell(myCell), 5000)
+}
+
+
+function killAlien(elCell) {
+    var i = parseInt(elCell.dataset.i)
+    var j = parseInt(elCell.dataset.j)
+
+    if (gBoard[i][j].gameObject === ALIEN) {
+        handleAlienHit({ i: i, j: j })
+    }
+    if (gBoard[i + 1][j].gameObject === ALIEN) {
+        handleAlienHit({ i: i + 1, j: j })
+    }
+    if (gBoard[i - 1][j].gameObject === ALIEN) {
+        handleAlienHit({ i: i - 1, j: j })
+    }
+    if (gBoard[i][j + 1].gameObject === ALIEN) {
+        handleAlienHit({ i: i, j: j + 1 })
+    }
+    if (gBoard[i][j - 1].gameObject === ALIEN) {
+        handleAlienHit({ i: i, j: j - 1 })
+    }
+
 }
