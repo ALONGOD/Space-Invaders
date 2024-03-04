@@ -1,17 +1,20 @@
 html {
     color: #fff;
-    background-color: #000;
+    background-image: url(https://www.codeproject.com/KB/scripting/681130/ScreenshotStarfield.png);
 }
 
 td {
-    padding: 13px;
-    width: 20px;
-    height: 20px;
+    padding: 12px;
+    width: 14px;
+    height: 14px;
     text-align: center;
 }
 
 .game {
-    margin-left: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
 }
 
 .hide {
