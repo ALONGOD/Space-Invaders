@@ -32,7 +32,12 @@ function moveHero(dir) {
 
 
 function shootHero() {
+
     if (gHero.isShoot) return
+
+    var shootingSound = new Audio('audio/laser.mp3');
+    shootingSound.play();
+
     if (gIsSuper) {
         gSuperCounter++
         superMode()

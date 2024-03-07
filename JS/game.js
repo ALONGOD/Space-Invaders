@@ -90,6 +90,9 @@ function updateScore(num) {
 
 
 function Victory() {
+    var victorySound = new Audio('audio/win.mp3');
+    victorySound.play();
+
     var elSpan = document.querySelector('span')
     elSpan.innerText = 'You won! hell yeahhh'
     var elGameOver = document.querySelector('.over')
@@ -99,6 +102,9 @@ function Victory() {
 }
 
 function lose() {
+    var losingSound = new Audio('audio/lose.mp3');
+    losingSound.play();
+
     var elSpan = document.querySelector('span')
     elSpan.innerText = 'You lost sorry...'
     var elGameOver = document.querySelector('.over')

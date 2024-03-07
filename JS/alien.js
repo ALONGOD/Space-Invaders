@@ -17,6 +17,8 @@ function createAliens(board) {
     }
 }
 function handleAlienHit(pos) {
+    var hitSound = new Audio('audio/alienHit.mp3');
+    hitSound.play();
     updateCell(pos)
     gGame.alienCount--
     updateScore(10)
