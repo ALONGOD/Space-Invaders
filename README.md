@@ -26,4 +26,4 @@ Space Invaders is a classic arcade game where players control a spaceship to def
 
 ## Play Now
 
-You can play the game directly by clicking [here](alongod.github.io/Space-Invaders/).
+You can play the game directly by clicking [here](https://alongod.github.io/Space-Invaders/).
