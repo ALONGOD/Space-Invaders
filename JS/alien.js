@@ -1,7 +1,7 @@
 `use strict`
 
-const ALIEN_SPEED = 1000
 var gIsAlienFreeze = false
+const ALIEN_SPEED =  1000
 gAliensTopRowIdx = 1
 gAliensBottomRowIdx = 2
 
