@@ -94,7 +94,7 @@ function Victory() {
     victorySound.play();
 
     var elSpan = document.querySelector('span')
-    elSpan.innerText = 'You won! hell yeahhh'
+    elSpan.innerText = 'You won! yeahhh'
     var elGameOver = document.querySelector('.over')
     elGameOver.classList.remove('hide')
     clearInterval(gIntervalAliens)
@@ -106,7 +106,7 @@ function lose() {
     losingSound.play();
 
     var elSpan = document.querySelector('span')
-    elSpan.innerText = 'You lost sorry...'
+    elSpan.innerText = 'You lost...'
     var elGameOver = document.querySelector('.over')
     elGameOver.classList.remove('hide')
     clearInterval(gIntervalAliens)
