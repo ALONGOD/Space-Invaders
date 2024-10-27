@@ -11,6 +11,7 @@ var gScore = 0
 var elH2 = document.querySelector('h2')
 elH2.innerText = `score: ${gScore}`
 
+
 var gIntervalCandy
 var gBoard
 var gGame = {
