@@ -13,7 +13,6 @@ elH2.innerText = `score: ${gScore}`
 
 
 
-
 var gIntervalCandy
 var gBoard
 var gGame = {
