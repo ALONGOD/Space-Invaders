@@ -9,6 +9,7 @@ function createHero(board) {
     board[gHero.pos.i][gHero.pos.j] = createCell(HERO)
 }
 
+
 function keyPress(ev) {
     if (ev.key === 'ArrowRight') moveHero(1)
     if (ev.key === 'ArrowLeft') moveHero(-1)
